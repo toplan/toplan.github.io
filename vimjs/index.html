@@ -43,27 +43,54 @@
         <input class="input" type="text" value="Welcome to vim.js">
     </div>
     <div class="row">
-<textarea rows="30" class="input">The MIT License (MIT)
+<textarea rows="50" class="input"># Browser support
+* Chrome  v39
+* Firefox  v34, v40
+* Safari
 
-Copyright (c) (top lan)
+Note: Whether to support other browsers still unknown
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+# Features
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+## 1. general mode
+|  Command |    Description |
+| ----- | ----------------------- |
+| Esc   | switch to general mode  |
+| u     | returned to the previous operation |
+| Move the cursor :               |
+| h or ← | move left one character |
+| j or ↓ | move down one line     |
+| k or ↑ | move up one line       |
+| l or → | move right one character |
+| supported nh,nj,nk,nl           |
+| 0 or [HOME]| move to head of line |
+| $ or [End] | move to end of line |
+| G          | go to end |
+| gg         | go to first line |
+| delete, copy and paste:        |
+| x or [Delete] | delete single character |
+| nx or n[Delete] | delete `n` characters |
+| yy         | copy current line |
+| nyy        | copy `n` lines    |
+| dd         | delete current line |
+| ndd        | delete `n` lines  |
+| p,P        | `p` paste after，`P` paste before|
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+## 2. edit mode
+|  Command |    Description  |
+| ----- | ----------------------- |
+| i     | insert |
+| a     | append |
+| o     | open line below and enter edit mode |
+| O     | open line after and enter edit mode |
+| r     | replace one character |
+
+## 3. visual mode
+|  Command |    Description |
+| -----  | ----------------------- |
+| v or V | switch ot visual mode   |
+| y      | copy the selected text  |
+| x or d | delete the selected text|
 </textarea>
     </div>
     <div class="row">
