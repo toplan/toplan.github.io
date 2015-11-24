@@ -539,6 +539,51 @@
 	module.exports.setTitle = function (title) {
 	    window.document.title = title;
 	};
+	
+	function getProperty(key, obj) {
+	    if (typeof obj != 'object') {
+	        obj = {};
+	    }
+	    try {
+	        if (key in obj) {
+	            return obj[key];
+	        }
+	    } catch(e) {}
+	    return null;
+	}
+	
+	module.exports.getProperty = function (key, obj) {
+	    return getProperty(key, obj);
+	};
+	
+	var appScroll = {};
+	module.exports.refreshScroll = function (opts) {
+	    var wrapper = getProperty('wrapper', opts);
+	    var alias = getProperty('alias', opts);
+	    if (!wrapper) {
+	        wrapper = '#scroll-wrapper';
+	    }
+	    if (document.querySelector(wrapper)) {
+	        var scroll = null;
+	        var name = alias || wrapper;
+	        if (name in appScroll) {
+	            scroll = appScroll[name];
+	        }
+	        if (!scroll) {
+	            //if you want to refresh personal center scroll bar,
+	            //please use method refresh().
+	            appScroll[name] = new IScroll(wrapper, {
+	                scrollbars: true,
+	                mouseWheel: true,
+	                interactiveScrollbars: true,
+	                shrinkScrollbars: 'scale',
+	                fadeScrollbars: true
+	            });
+	        } else {
+	            scroll.refresh();
+	        }
+	    }
+	};
 
 /***/ },
 /* 14 */
@@ -14797,7 +14842,7 @@
 	 */
 	var Store = __webpack_require__(14);
 	var routes = __webpack_require__(96);
-	var _ = __webpack_require__(115);
+	var _ = __webpack_require__(104);
 	var ajax = _.ajax;
 	
 	// user object
@@ -14942,7 +14987,7 @@
 	
 	routeFiles.push(__webpack_require__(98));
 	
-	routeFiles.push(__webpack_require__(111));
+	routeFiles.push(__webpack_require__(113));
 	//------------------------------
 	
 	// parse routes file, and add route info to routes array
@@ -14984,10 +15029,10 @@
 	        component : __webpack_require__(99),
 	        subRoutes : {
 	            '/play' : {
-	                component : __webpack_require__(105)
+	                component : __webpack_require__(107)
 	            },
 	            '/courses' : {
-	                component : __webpack_require__(108)
+	                component : __webpack_require__(110)
 	            }
 	        }
 	    }
@@ -15001,7 +15046,7 @@
 	module.exports = __webpack_require__(100)
 	
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(104)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(106)
 	if (false) {
 	(function () {
 	var hotAPI = require("vue-hot-reload-api")
@@ -15025,37 +15070,19 @@
 	'use strict';
 	
 	var footerBarComponent = __webpack_require__(101);
-	
+	var _ = __webpack_require__(104);
 	module.exports = {
 	    data: function data() {
 	        return {
 	            activeFooterBar: ''
 	        };
 	    },
-	    ready: function ready() {
-	        // load iscroll
-	        this.loadIscroll();
-	        //
-	    },
 	    watch: {
 	        'activeFooterBar': function activeFooterBar(val, oldVal) {
-	            if (window.centerScroll) {
-	                window.centerScroll.refresh();
-	            }
-	            this.$broadcast('active', val);
-	        }
-	    },
-	    methods: {
-	        loadIscroll: function loadIscroll() {
-	            window.centerScroll = new IScroll('#center-wrapper', {
-	                scrollbars: true,
-	                mouseWheel: true,
-	                interactiveScrollbars: true,
-	                shrinkScrollbars: 'scale',
-	                fadeScrollbars: true
+	            _.refreshScroll({
+	                alias: 'login'
 	            });
-	            //if you want to refresh personal center scroll bar,
-	            //please use window.centerScroll.refresh().
+	            this.$broadcast('active', val);
 	        }
 	    },
 	    components: {
@@ -15122,175 +15149,6 @@
 
 /***/ },
 /* 104 */
-/***/ function(module, exports) {
-
-	module.exports = "<div id=\"center-wrapper\">\n        <div id=\"scroller\">\n        <router-view></router-view>\n        </div>\n    </div>\n    <footer-bar></footer-bar>";
-
-/***/ },
-/* 105 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(106)
-	
-	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(107)
-	if (false) {
-	(function () {
-	var hotAPI = require("vue-hot-reload-api")
-	hotAPI.install(require("vue"))
-	if (!hotAPI.compatible) return
-	var id = "-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./play.vue"
-	hotAPI.createRecord(id, module.exports)
-	module.hot.accept(["-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./play.vue","-!vue-html!./../../../../../node_modules/vue-loader/lib/selector.js?type=template&index=0!./play.vue"], function () {
-	var newOptions = require("-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./play.vue")
-	if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-	var newTemplate = require("-!vue-html!./../../../../../node_modules/vue-loader/lib/selector.js?type=template&index=0!./play.vue")
-	hotAPI.update(id, newOptions, newTemplate)
-	})
-	})()
-	}
-
-/***/ },
-/* 106 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	var footerBarName = 'play';
-	module.exports = {
-	    ready: function ready() {
-	        this.$parent.$data.activeFooterBar = footerBarName;
-	    }
-	};
-
-/***/ },
-/* 107 */
-/***/ function(module, exports) {
-
-	module.exports = "<!--<h2>Play!</h2>-->\n    <video id=\"videoJs\" class=\"video-js vjs-default-skin vjs-big-play-centered\" controls preload=\"none\" width=\"100%\" height=\"270\"\n        data-setup=\"{}\">\n        您的浏览器不支持 video 标签。\n    </video>\n    <ul class=\"horizontal-nav horizontal-nav-3\">\n        <li class=\"active\">课程介绍</li>\n        <li>相关课件</li>\n        <li>课后测验</li>\n    </ul>\n    <div class=\"course-info-box\">\n        <div class=\"description\">\n            <p>\n                <span class=\"desc-title\">行业：</span>\n                <span class=\"desc-content\">建筑施工</span>\n            </p>\n            <p>\n                <span class=\"desc-title\">时长：</span>\n                <span class=\"desc-content\">2课时&nbsp;&nbsp;共7分23秒</span>\n            </p>\n            <p>\n                <span class=\"desc-title\">简介：</span>\n                <span class=\"desc-content\">\n                    实例模板。模板默认替换挂载元素。如果 replace 选项为 false，模板将插入挂载元素内。两种情况下，挂载元素的内容都将被忽略，除非模板有内容分发 slot。\n                    如果值以 # 开始，则它用作选项符，将使用匹配元素的 innerHTML 作为模板。常用的技巧是用包含模板。\n                </span>\n            </p>\n        </div>\n    </div>\n    <div class=\"row mb-5\">\n        <span class=\"font-size-16\">剩余课程</span>\n    </div>\n    <div class=\"row course-row\">\n        <div class=\"left\">\n           <img src=\"http://7xkg31.com2.z0.glb.qiniucdn.com/201506/b/a/3/b84bef7c21bed7aa282cba181f31c953.png\">\n        </div>\n        <div class=\"right\">\n            <p>《安全生产法》之安全生产十大定律</p>\n            <p><span class=\"label label-default\">公共安全</span></p>\n            <p>2课时&nbsp;&nbsp;共7分23秒</p>\n            <p>到期时间：&nbsp;2015年12月15日</p>\n        </div>\n    </div>";
-
-/***/ },
-/* 108 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(109)
-	
-	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(110)
-	if (false) {
-	(function () {
-	var hotAPI = require("vue-hot-reload-api")
-	hotAPI.install(require("vue"))
-	if (!hotAPI.compatible) return
-	var id = "-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./list.vue"
-	hotAPI.createRecord(id, module.exports)
-	module.hot.accept(["-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./list.vue","-!vue-html!./../../../../../node_modules/vue-loader/lib/selector.js?type=template&index=0!./list.vue"], function () {
-	var newOptions = require("-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./list.vue")
-	if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-	var newTemplate = require("-!vue-html!./../../../../../node_modules/vue-loader/lib/selector.js?type=template&index=0!./list.vue")
-	hotAPI.update(id, newOptions, newTemplate)
-	})
-	})()
-	}
-
-/***/ },
-/* 109 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	var footerBarName = 'course';
-	module.exports = {
-	    data: function data() {
-	        return {
-	            list: [1, 2, 3, 4, 5, 6, 7]
-	        };
-	    },
-	    ready: function ready() {
-	        this.$parent.$data.activeFooterBar = footerBarName;
-	    }
-	};
-
-/***/ },
-/* 110 */
-/***/ function(module, exports) {
-
-	module.exports = "<div v-for=\"item in list\" class=\"row course-row big\">\n        <div class=\"left\">\n           <img src=\"http://7xkg31.com2.z0.glb.qiniucdn.com/201506/b/a/3/b84bef7c21bed7aa282cba181f31c953.png\">\n        </div>\n        <div class=\"right\">\n            <p>《安全生产法》之安全生产十大定律</p>\n            <p><span class=\"label label-default\">公共安全</span></p>\n            <p>2课时&nbsp;&nbsp;共7分23秒</p>\n            <p>到期时间：&nbsp;2015年12月15日</p>\n        </div>\n    </div>";
-
-/***/ },
-/* 111 */
-/***/ function(module, exports, __webpack_require__) {
-
-	
-	module.exports = {
-	    '/login': {
-	        auth: false,
-	        component: __webpack_require__(112)
-	    }
-	};
-
-/***/ },
-/* 112 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(113)
-	
-	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(114)
-	if (false) {
-	(function () {
-	var hotAPI = require("vue-hot-reload-api")
-	hotAPI.install(require("vue"))
-	if (!hotAPI.compatible) return
-	var id = "-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./login.vue"
-	hotAPI.createRecord(id, module.exports)
-	module.hot.accept(["-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./login.vue","-!vue-html!./../../../../node_modules/vue-loader/lib/selector.js?type=template&index=0!./login.vue"], function () {
-	var newOptions = require("-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./login.vue")
-	if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-	var newTemplate = require("-!vue-html!./../../../../node_modules/vue-loader/lib/selector.js?type=template&index=0!./login.vue")
-	hotAPI.update(id, newOptions, newTemplate)
-	})
-	})()
-	}
-
-/***/ },
-/* 113 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	module.exports = {
-	    data: function data() {
-	        return {
-	            username: null,
-	            password: null,
-	            logoSrc: './public/images/login_logo.png',
-	            phoneSrc: './public/images/phone.png'
-	        };
-	    },
-	    methods: {
-	        login: function login() {
-	            // login
-	            this.$user = {
-	                name: 'toplan710',
-	                email: 'toplan710@gmail.com'
-	            };
-	            // redirect
-	            if (this.$user) {
-	                this.$router.go('/center/play');
-	            }
-	        }
-	    }
-	};
-
-/***/ },
-/* 114 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"logo-wrapper\">\n        <img v-bind:src=\"logoSrc\">\n    </div>\n    <div class=\"cell\">\n        <input type=\"text\" class=\"row-input\" placeholder=\"输入用户名\" v-model=\"username\">\n    </div>\n    <div class=\"cell\">\n        <input type=\"password\" class=\"row-input\" placeholder=\"输入密码\" v-model=\"password\">\n    </div>\n    <div class=\"cell mt-30\">\n        <button v-on:click=\"login\"\n         class=\"aq-btn aq-btn-default aq-btn-bg block-btn\">登陆</button>\n    </div>\n    <div class=\"cell cell-center\">\n        <div class=\"contact-wrapper\">\n            <img v-bind:src=\"phoneSrc\">\n            咨询热线：028 - 83359259\n        </div>\n    </div>";
-
-/***/ },
-/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -15301,18 +15159,18 @@
 	var extend = helper.extend;
 	
 	extend(module.exports, helper);
-	extend(module.exports, __webpack_require__(116));
+	extend(module.exports, __webpack_require__(105));
 	
 
 
 /***/ },
-/* 116 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Created by top on 15-11-12.
 	 */
-	var _ = __webpack_require__(115);
+	var _ = __webpack_require__(104);
 	var Store = __webpack_require__(14);
 	var base = '/v1';
 	
@@ -15352,6 +15210,182 @@
 	
 	
 
+
+/***/ },
+/* 106 */
+/***/ function(module, exports) {
+
+	module.exports = "<div id=\"scroll-wrapper\">\n        <div id=\"scroller\">\n        <router-view></router-view>\n        </div>\n    </div>\n    <footer-bar></footer-bar>";
+
+/***/ },
+/* 107 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(108)
+	
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(109)
+	if (false) {
+	(function () {
+	var hotAPI = require("vue-hot-reload-api")
+	hotAPI.install(require("vue"))
+	if (!hotAPI.compatible) return
+	var id = "-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./play.vue"
+	hotAPI.createRecord(id, module.exports)
+	module.hot.accept(["-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./play.vue","-!vue-html!./../../../../../node_modules/vue-loader/lib/selector.js?type=template&index=0!./play.vue"], function () {
+	var newOptions = require("-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./play.vue")
+	if (newOptions && newOptions.__esModule) newOptions = newOptions.default
+	var newTemplate = require("-!vue-html!./../../../../../node_modules/vue-loader/lib/selector.js?type=template&index=0!./play.vue")
+	hotAPI.update(id, newOptions, newTemplate)
+	})
+	})()
+	}
+
+/***/ },
+/* 108 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	var footerBarName = 'play';
+	module.exports = {
+	    ready: function ready() {
+	        this.$parent.$data.activeFooterBar = footerBarName;
+	    }
+	};
+
+/***/ },
+/* 109 */
+/***/ function(module, exports) {
+
+	module.exports = "<!--<h2>Play!</h2>-->\n    <video id=\"videoJs\" class=\"video-js vjs-default-skin vjs-big-play-centered\" controls preload=\"none\" width=\"100%\" height=\"270\"\n        data-setup=\"{}\">\n        您的浏览器不支持 video 标签。\n    </video>\n    <ul class=\"horizontal-nav horizontal-nav-3\">\n        <li class=\"active\">课程介绍</li>\n        <li>相关课件</li>\n        <li>课后测验</li>\n    </ul>\n    <div class=\"course-info-box\">\n        <div class=\"description\">\n            <p>\n                <span class=\"desc-title\">行业：</span>\n                <span class=\"desc-content\">建筑施工</span>\n            </p>\n            <p>\n                <span class=\"desc-title\">时长：</span>\n                <span class=\"desc-content\">2课时&nbsp;&nbsp;共7分23秒</span>\n            </p>\n            <p>\n                <span class=\"desc-title\">简介：</span>\n                <span class=\"desc-content\">\n                    实例模板。模板默认替换挂载元素。如果 replace 选项为 false，模板将插入挂载元素内。两种情况下，挂载元素的内容都将被忽略，除非模板有内容分发 slot。\n                    如果值以 # 开始，则它用作选项符，将使用匹配元素的 innerHTML 作为模板。常用的技巧是用包含模板。\n                </span>\n            </p>\n        </div>\n    </div>\n    <div class=\"row mb-5\">\n        <span class=\"font-size-16\">剩余课程</span>\n    </div>\n    <div class=\"row course-row\">\n        <div class=\"left\">\n           <img src=\"http://7xkg31.com2.z0.glb.qiniucdn.com/201506/b/a/3/b84bef7c21bed7aa282cba181f31c953.png\">\n        </div>\n        <div class=\"right\">\n            <p>《安全生产法》之安全生产十大定律</p>\n            <p><span class=\"label label-default\">公共安全</span></p>\n            <p>2课时&nbsp;&nbsp;共7分23秒</p>\n            <p>到期时间：&nbsp;2015年12月15日</p>\n        </div>\n    </div>";
+
+/***/ },
+/* 110 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(111)
+	
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(112)
+	if (false) {
+	(function () {
+	var hotAPI = require("vue-hot-reload-api")
+	hotAPI.install(require("vue"))
+	if (!hotAPI.compatible) return
+	var id = "-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./list.vue"
+	hotAPI.createRecord(id, module.exports)
+	module.hot.accept(["-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./list.vue","-!vue-html!./../../../../../node_modules/vue-loader/lib/selector.js?type=template&index=0!./list.vue"], function () {
+	var newOptions = require("-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./list.vue")
+	if (newOptions && newOptions.__esModule) newOptions = newOptions.default
+	var newTemplate = require("-!vue-html!./../../../../../node_modules/vue-loader/lib/selector.js?type=template&index=0!./list.vue")
+	hotAPI.update(id, newOptions, newTemplate)
+	})
+	})()
+	}
+
+/***/ },
+/* 111 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	var footerBarName = 'course';
+	module.exports = {
+	    data: function data() {
+	        return {
+	            list: [1, 2, 3, 4, 5, 6, 7]
+	        };
+	    },
+	    ready: function ready() {
+	        this.$parent.$data.activeFooterBar = footerBarName;
+	    }
+	};
+
+/***/ },
+/* 112 */
+/***/ function(module, exports) {
+
+	module.exports = "<div v-for=\"item in list\" class=\"row course-row big\">\n        <div class=\"left\">\n           <img src=\"http://7xkg31.com2.z0.glb.qiniucdn.com/201506/b/a/3/b84bef7c21bed7aa282cba181f31c953.png\">\n        </div>\n        <div class=\"right\">\n            <p>《安全生产法》之安全生产十大定律</p>\n            <p><span class=\"label label-default\">公共安全</span></p>\n            <p>2课时&nbsp;&nbsp;共7分23秒</p>\n            <p>到期时间：&nbsp;2015年12月15日</p>\n        </div>\n    </div>";
+
+/***/ },
+/* 113 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	module.exports = {
+	    '/login': {
+	        auth: false,
+	        component: __webpack_require__(114)
+	    }
+	};
+
+/***/ },
+/* 114 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(115)
+	
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(116)
+	if (false) {
+	(function () {
+	var hotAPI = require("vue-hot-reload-api")
+	hotAPI.install(require("vue"))
+	if (!hotAPI.compatible) return
+	var id = "-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./login.vue"
+	hotAPI.createRecord(id, module.exports)
+	module.hot.accept(["-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./login.vue","-!vue-html!./../../../../node_modules/vue-loader/lib/selector.js?type=template&index=0!./login.vue"], function () {
+	var newOptions = require("-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./login.vue")
+	if (newOptions && newOptions.__esModule) newOptions = newOptions.default
+	var newTemplate = require("-!vue-html!./../../../../node_modules/vue-loader/lib/selector.js?type=template&index=0!./login.vue")
+	hotAPI.update(id, newOptions, newTemplate)
+	})
+	})()
+	}
+
+/***/ },
+/* 115 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _ = __webpack_require__(104);
+	
+	module.exports = {
+	    data: function data() {
+	        return {
+	            username: null,
+	            password: null,
+	            logoSrc: './public/images/login_logo.png',
+	            phoneSrc: './public/images/phone.png'
+	        };
+	    },
+	    ready: function ready() {
+	        _.refreshScroll({
+	            alias: 'center'
+	        });
+	    },
+	    methods: {
+	        login: function login() {
+	            // login
+	            this.$user = {
+	                name: 'toplan710',
+	                email: 'toplan710@gmail.com'
+	            };
+	            // redirect
+	            if (this.$user) {
+	                this.$router.go('/center/play');
+	            }
+	        }
+	    }
+	};
+
+/***/ },
+/* 116 */
+/***/ function(module, exports) {
+
+	module.exports = "<div id=\"scroll-wrapper\" class=\"full\">\n        <div id=\"scroller\">\n            <div class=\"logo-wrapper\">\n                <img v-bind:src=\"logoSrc\">\n            </div>\n            <div class=\"cell\">\n                <input type=\"text\" class=\"row-input\" placeholder=\"输入用户名\" v-model=\"username\">\n            </div>\n            <div class=\"cell\">\n                <input type=\"password\" class=\"row-input\" placeholder=\"输入密码\" v-model=\"password\">\n            </div>\n            <div class=\"cell mt-30\">\n                <button v-on:click=\"login\"\n                 class=\"aq-btn aq-btn-default aq-btn-bg block-btn\">登陆</button>\n            </div>\n            <div class=\"cell cell-center\">\n                <div class=\"contact-wrapper\">\n                    <img v-bind:src=\"phoneSrc\">\n                    咨询热线：028 - 83359259\n                </div>\n            </div>\n        </div>\n    </div>";
 
 /***/ }
 /******/ ]);
