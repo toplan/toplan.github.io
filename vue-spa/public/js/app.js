@@ -58,13 +58,13 @@
 	/*
 	 * import root component
 	 */
-	var rootComponent = __webpack_require__(7);
+	var rootComponent = __webpack_require__(8);
 	
 	
 	/*
 	 * load app object
 	 */
-	var app = __webpack_require__(17);
+	var app = __webpack_require__(18);
 	
 	
 	/*
@@ -80,14 +80,15 @@
 /* 4 */,
 /* 5 */,
 /* 6 */,
-/* 7 */
+/* 7 */,
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(8)
-	module.exports = __webpack_require__(12)
+	__webpack_require__(9)
+	module.exports = __webpack_require__(13)
 	
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(16)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(17)
 	if (false) {
 	(function () {
 	var hotAPI = require("vue-hot-reload-api")
@@ -105,16 +106,16 @@
 	}
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(9);
+	var content = __webpack_require__(10);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(11)(content, {});
+	var update = __webpack_require__(12)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -131,10 +132,10 @@
 	}
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(10)();
+	exports = module.exports = __webpack_require__(11)();
 	// imports
 	
 	
@@ -145,7 +146,7 @@
 
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports) {
 
 	/*
@@ -201,7 +202,7 @@
 
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -455,13 +456,13 @@
 
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _ = __webpack_require__(13);
-	var Store = __webpack_require__(14);
+	var _ = __webpack_require__(14);
+	var Store = __webpack_require__(15);
 	
 	module.exports = {
 	    data: function data() {
@@ -482,7 +483,7 @@
 	};
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports) {
 
 	/**
@@ -560,6 +561,7 @@
 	module.exports.refreshScroll = function (opts) {
 	    var wrapper = getProperty('wrapper', opts);
 	    var alias = getProperty('alias', opts);
+	    var top = getProperty('top', opts);// must be integer
 	    if (!wrapper) {
 	        wrapper = '#scroll-wrapper';
 	    }
@@ -581,12 +583,16 @@
 	            });
 	        } else {
 	            scroll.refresh();
+	            if (top != null && top != undefined) {
+	                // scrollTo(x, y, time, easing)
+	                scroll.scrollTo(0, top)
+	            }
 	        }
 	    }
 	};
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module) {;(function(win){
@@ -765,10 +771,10 @@
 	
 	})(Function('return this')());
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)(module)))
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -784,13 +790,13 @@
 
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports) {
 
 	module.exports = "<div id=\"body\">\n        <router-view></router-view>\n    </div>";
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -800,10 +806,10 @@
 	/*
 	 * import dependencies
 	 */
-	var Vue = __webpack_require__(18);
-	var VueRouter = __webpack_require__(86);
-	var VueResource = __webpack_require__(87);
-	var init = __webpack_require__(95);
+	var Vue = __webpack_require__(19);
+	var VueRouter = __webpack_require__(87);
+	var VueResource = __webpack_require__(88);
+	var init = __webpack_require__(96);
 	
 	/*
 	 * manual use vue plugins
@@ -833,10 +839,10 @@
 	};
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
 	var extend = _.extend
 	
 	/**
@@ -861,7 +867,7 @@
 	 * Mixin global API
 	 */
 	
-	extend(Vue, __webpack_require__(32))
+	extend(Vue, __webpack_require__(33))
 	
 	/**
 	 * Vue and every constructor that extends Vue has an
@@ -874,9 +880,9 @@
 	
 	Vue.options = {
 	  replace: true,
-	  directives: __webpack_require__(35),
-	  elementDirectives: __webpack_require__(69),
-	  filters: __webpack_require__(72),
+	  directives: __webpack_require__(36),
+	  elementDirectives: __webpack_require__(70),
+	  filters: __webpack_require__(73),
 	  transitions: {},
 	  components: {},
 	  partials: {}
@@ -908,20 +914,20 @@
 	 * Mixin internal instance methods
 	 */
 	
-	extend(p, __webpack_require__(74))
 	extend(p, __webpack_require__(75))
 	extend(p, __webpack_require__(76))
-	extend(p, __webpack_require__(79))
-	extend(p, __webpack_require__(81))
+	extend(p, __webpack_require__(77))
+	extend(p, __webpack_require__(80))
+	extend(p, __webpack_require__(82))
 	
 	/**
 	 * Mixin public API methods
 	 */
 	
-	extend(p, __webpack_require__(82))
 	extend(p, __webpack_require__(83))
 	extend(p, __webpack_require__(84))
 	extend(p, __webpack_require__(85))
+	extend(p, __webpack_require__(86))
 	
 	Vue.version = '1.0.8'
 	module.exports = _.Vue = Vue
@@ -933,10 +939,10 @@
 	  }
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports) {
 
 	// shim for using process in browser
@@ -1033,22 +1039,22 @@
 
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var lang = __webpack_require__(21)
+	var lang = __webpack_require__(22)
 	var extend = lang.extend
 	
 	extend(exports, lang)
-	extend(exports, __webpack_require__(22))
 	extend(exports, __webpack_require__(23))
-	extend(exports, __webpack_require__(29))
+	extend(exports, __webpack_require__(24))
 	extend(exports, __webpack_require__(30))
 	extend(exports, __webpack_require__(31))
+	extend(exports, __webpack_require__(32))
 
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports) {
 
 	/**
@@ -1444,7 +1450,7 @@
 
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports) {
 
 	// can we use __proto__?
@@ -1535,12 +1541,12 @@
 
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
-	var config = __webpack_require__(24)
-	var transition = __webpack_require__(28)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
+	var config = __webpack_require__(25)
+	var transition = __webpack_require__(29)
 	
 	/**
 	 * Query an element selector if it's not an element already.
@@ -1902,10 +1908,10 @@
 	  }
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -1999,7 +2005,7 @@
 	
 	var delimiters = ['{{', '}}']
 	var unsafeDelimiters = ['{{{', '}}}']
-	var textParser = __webpack_require__(25)
+	var textParser = __webpack_require__(26)
 	
 	Object.defineProperty(module.exports, 'delimiters', {
 	  get: function () {
@@ -2023,12 +2029,12 @@
 
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Cache = __webpack_require__(26)
-	var config = __webpack_require__(24)
-	var dirParser = __webpack_require__(27)
+	var Cache = __webpack_require__(27)
+	var config = __webpack_require__(25)
+	var dirParser = __webpack_require__(28)
 	var regexEscapeRE = /[-.*+?^${}()|[\]\/\\]/g
 	var cache, tagRE, htmlRE
 	
@@ -2189,7 +2195,7 @@
 
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports) {
 
 	/**
@@ -2307,11 +2313,11 @@
 
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
-	var Cache = __webpack_require__(26)
+	var _ = __webpack_require__(21)
+	var Cache = __webpack_require__(27)
 	var cache = new Cache(1000)
 	var filterTokenRE = /[^\s'"]+|'[^']*'|"[^"]*"/g
 	var reservedArgRE = /^in$|^-?\d+/
@@ -2447,10 +2453,10 @@
 
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
+	var _ = __webpack_require__(21)
 	
 	/**
 	 * Append with transition.
@@ -2532,11 +2538,11 @@
 
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
-	var config = __webpack_require__(24)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
+	var config = __webpack_require__(25)
 	var extend = _.extend
 	
 	/**
@@ -2895,13 +2901,13 @@
 	    assets[camelizedId.charAt(0).toUpperCase() + camelizedId.slice(1)]
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
 	
 	/**
 	 * Check if an element is a component, if yes return its
@@ -3052,10 +3058,10 @@
 	  return Object.prototype.toString.call(val).slice(8, -1)
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -3064,7 +3070,7 @@
 	
 	if (process.env.NODE_ENV !== 'production') {
 	
-	  var config = __webpack_require__(24)
+	  var config = __webpack_require__(25)
 	  var hasConsole = typeof console !== 'undefined'
 	
 	  /**
@@ -3106,14 +3112,14 @@
 	  }
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
-	var config = __webpack_require__(24)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
+	var config = __webpack_require__(25)
 	
 	/**
 	 * Expose useful internals
@@ -3129,15 +3135,15 @@
 	 * The following are exposed for advanced usage / plugins
 	 */
 	
-	exports.compiler = __webpack_require__(33)
-	exports.FragmentFactory = __webpack_require__(40)
-	exports.internalDirectives = __webpack_require__(55)
+	exports.compiler = __webpack_require__(34)
+	exports.FragmentFactory = __webpack_require__(41)
+	exports.internalDirectives = __webpack_require__(56)
 	exports.parsers = {
-	  path: __webpack_require__(62),
-	  text: __webpack_require__(25),
-	  template: __webpack_require__(38),
-	  directive: __webpack_require__(27),
-	  expression: __webpack_require__(61)
+	  path: __webpack_require__(63),
+	  text: __webpack_require__(26),
+	  template: __webpack_require__(39),
+	  directive: __webpack_require__(28),
+	  expression: __webpack_require__(62)
 	}
 	
 	/**
@@ -3274,29 +3280,29 @@
 	  }
 	})
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
-
-/***/ },
-/* 33 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var _ = __webpack_require__(20)
-	
-	_.extend(exports, __webpack_require__(34))
-	_.extend(exports, __webpack_require__(68))
-
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
 /* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
-	var publicDirectives = __webpack_require__(35)
-	var internalDirectives = __webpack_require__(55)
-	var compileProps = __webpack_require__(67)
-	var textParser = __webpack_require__(25)
-	var dirParser = __webpack_require__(27)
-	var templateParser = __webpack_require__(38)
+	var _ = __webpack_require__(21)
+	
+	_.extend(exports, __webpack_require__(35))
+	_.extend(exports, __webpack_require__(69))
+
+
+/***/ },
+/* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
+	var publicDirectives = __webpack_require__(36)
+	var internalDirectives = __webpack_require__(56)
+	var compileProps = __webpack_require__(68)
+	var textParser = __webpack_require__(26)
+	var dirParser = __webpack_require__(28)
+	var templateParser = __webpack_require__(39)
 	var resolveAsset = _.resolveAsset
 	
 	// special binding prefixes
@@ -4062,43 +4068,43 @@
 	  }
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
-
-/***/ },
-/* 35 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// text & html
-	exports.text = __webpack_require__(36)
-	exports.html = __webpack_require__(37)
-	
-	// logic control
-	exports['for'] = __webpack_require__(39)
-	exports['if'] = __webpack_require__(42)
-	exports.show = __webpack_require__(43)
-	
-	// two-way binding
-	exports.model = __webpack_require__(44)
-	
-	// event handling
-	exports.on = __webpack_require__(49)
-	
-	// attributes
-	exports.bind = __webpack_require__(50)
-	
-	// ref & el
-	exports.el = __webpack_require__(52)
-	exports.ref = __webpack_require__(53)
-	
-	// cloak
-	exports.cloak = __webpack_require__(54)
-
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
 /* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
+	// text & html
+	exports.text = __webpack_require__(37)
+	exports.html = __webpack_require__(38)
+	
+	// logic control
+	exports['for'] = __webpack_require__(40)
+	exports['if'] = __webpack_require__(43)
+	exports.show = __webpack_require__(44)
+	
+	// two-way binding
+	exports.model = __webpack_require__(45)
+	
+	// event handling
+	exports.on = __webpack_require__(50)
+	
+	// attributes
+	exports.bind = __webpack_require__(51)
+	
+	// ref & el
+	exports.el = __webpack_require__(53)
+	exports.ref = __webpack_require__(54)
+	
+	// cloak
+	exports.cloak = __webpack_require__(55)
+
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var _ = __webpack_require__(21)
 	
 	module.exports = {
 	
@@ -4115,11 +4121,11 @@
 
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
-	var templateParser = __webpack_require__(38)
+	var _ = __webpack_require__(21)
+	var templateParser = __webpack_require__(39)
 	
 	module.exports = {
 	
@@ -4161,11 +4167,11 @@
 
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
-	var Cache = __webpack_require__(26)
+	var _ = __webpack_require__(21)
+	var Cache = __webpack_require__(27)
 	var templateCache = new Cache(1000)
 	var idSelectorCache = new Cache(1000)
 	
@@ -4455,11 +4461,11 @@
 
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
-	var FragmentFactory = __webpack_require__(40)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
+	var FragmentFactory = __webpack_require__(41)
 	var isObject = _.isObject
 	var uid = 0
 	
@@ -5048,17 +5054,17 @@
 	  }
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
-	var compiler = __webpack_require__(33)
-	var templateParser = __webpack_require__(38)
-	var Fragment = __webpack_require__(41)
-	var Cache = __webpack_require__(26)
+	var _ = __webpack_require__(21)
+	var compiler = __webpack_require__(34)
+	var templateParser = __webpack_require__(39)
+	var Fragment = __webpack_require__(42)
+	var Cache = __webpack_require__(27)
 	var linkerCache = new Cache(5000)
 	
 	/**
@@ -5113,11 +5119,11 @@
 
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
-	var transition = __webpack_require__(28)
+	var _ = __webpack_require__(21)
+	var transition = __webpack_require__(29)
 	
 	/**
 	 * Abstraction for a partially-compiled fragment.
@@ -5305,11 +5311,11 @@
 
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
-	var FragmentFactory = __webpack_require__(40)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
+	var FragmentFactory = __webpack_require__(41)
 	
 	module.exports = {
 	
@@ -5375,14 +5381,14 @@
 	  }
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
-	var transition = __webpack_require__(28)
+	var _ = __webpack_require__(21)
+	var transition = __webpack_require__(29)
 	
 	module.exports = {
 	
@@ -5410,16 +5416,16 @@
 
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
 	
 	var handlers = {
-	  text: __webpack_require__(45),
-	  radio: __webpack_require__(46),
-	  select: __webpack_require__(47),
-	  checkbox: __webpack_require__(48)
+	  text: __webpack_require__(46),
+	  radio: __webpack_require__(47),
+	  select: __webpack_require__(48),
+	  checkbox: __webpack_require__(49)
 	}
 	
 	module.exports = {
@@ -5496,13 +5502,13 @@
 	  }
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
+	var _ = __webpack_require__(21)
 	
 	module.exports = {
 	
@@ -5632,10 +5638,10 @@
 
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
+	var _ = __webpack_require__(21)
 	
 	module.exports = {
 	
@@ -5672,10 +5678,10 @@
 
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
+	var _ = __webpack_require__(21)
 	
 	module.exports = {
 	
@@ -5796,10 +5802,10 @@
 
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
+	var _ = __webpack_require__(21)
 	
 	module.exports = {
 	
@@ -5864,10 +5870,10 @@
 
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
 	
 	// keyCode aliases
 	var keyCodes = {
@@ -5992,13 +5998,13 @@
 	  }
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
 	
 	// xlink
 	var xlinkNS = 'http://www.w3.org/1999/xlink'
@@ -6086,7 +6092,7 @@
 	  },
 	
 	  // share object handler with v-bind:class
-	  handleObject: __webpack_require__(51).handleObject,
+	  handleObject: __webpack_require__(52).handleObject,
 	
 	  handleSingle: function (attr, value) {
 	    if (inputProps[attr] && attr in this.el) {
@@ -6122,13 +6128,13 @@
 	  }
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
+	var _ = __webpack_require__(21)
 	var prefixes = ['-webkit-', '-moz-', '-ms-']
 	var camelPrefixes = ['Webkit', 'Moz', 'ms']
 	var importantRE = /!important;?$/
@@ -6238,10 +6244,10 @@
 
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
+	var _ = __webpack_require__(21)
 	
 	module.exports = {
 	
@@ -6271,13 +6277,13 @@
 
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {if (process.env.NODE_ENV !== 'production') {
 	  module.exports = {
 	    bind: function () {
-	      __webpack_require__(20).warn(
+	      __webpack_require__(21).warn(
 	        'v-ref:' + this.arg + ' must be used on a child ' +
 	        'component. Found on <' + this.el.tagName.toLowerCase() + '>.'
 	      )
@@ -6285,10 +6291,10 @@
 	  }
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -6302,21 +6308,21 @@
 
 
 /***/ },
-/* 55 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports.style = __webpack_require__(51)
-	exports['class'] = __webpack_require__(56)
-	exports.component = __webpack_require__(57)
-	exports.prop = __webpack_require__(58)
-	exports.transition = __webpack_require__(64)
-
-
-/***/ },
 /* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
+	exports.style = __webpack_require__(52)
+	exports['class'] = __webpack_require__(57)
+	exports.component = __webpack_require__(58)
+	exports.prop = __webpack_require__(59)
+	exports.transition = __webpack_require__(65)
+
+
+/***/ },
+/* 57 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var _ = __webpack_require__(21)
 	var addClass = _.addClass
 	var removeClass = _.removeClass
 	
@@ -6390,11 +6396,11 @@
 
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
-	var templateParser = __webpack_require__(38)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
+	var templateParser = __webpack_require__(39)
 	
 	module.exports = {
 	
@@ -6742,10 +6748,10 @@
 	  }
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// NOTE: the prop internal directive is compiled and linked
@@ -6753,9 +6759,9 @@
 	// The purpose is to make the initial prop values available
 	// inside `created` hooks and `data` functions.
 	
-	var _ = __webpack_require__(20)
-	var Watcher = __webpack_require__(59)
-	var bindingModes = __webpack_require__(24)._propBindingModes
+	var _ = __webpack_require__(21)
+	var Watcher = __webpack_require__(60)
+	var bindingModes = __webpack_require__(25)._propBindingModes
 	
 	module.exports = {
 	
@@ -6820,14 +6826,14 @@
 
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
-	var config = __webpack_require__(24)
-	var Dep = __webpack_require__(60)
-	var expParser = __webpack_require__(61)
-	var batcher = __webpack_require__(63)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
+	var config = __webpack_require__(25)
+	var Dep = __webpack_require__(61)
+	var expParser = __webpack_require__(62)
+	var batcher = __webpack_require__(64)
 	var uid = 0
 	
 	/**
@@ -7160,13 +7166,13 @@
 	
 	module.exports = Watcher
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 60 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
+	var _ = __webpack_require__(21)
 	var uid = 0
 	
 	/**
@@ -7230,12 +7236,12 @@
 
 
 /***/ },
-/* 61 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
-	var Path = __webpack_require__(62)
-	var Cache = __webpack_require__(26)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
+	var Path = __webpack_require__(63)
+	var Cache = __webpack_require__(27)
 	var expressionCache = new Cache(1000)
 	
 	var allowedKeywords =
@@ -7498,14 +7504,14 @@
 	    exp.slice(0, 5) !== 'Math.'
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 62 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
-	var Cache = __webpack_require__(26)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
+	var Cache = __webpack_require__(27)
 	var pathCache = new Cache(1000)
 	var identRE = exports.identRE = /^[$_a-zA-Z]+[\w$]*$/
 	
@@ -7863,14 +7869,14 @@
 	  return true
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
-	var config = __webpack_require__(24)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
+	var config = __webpack_require__(25)
 	
 	// we have two separate queues: one for directive updates
 	// and one for user watcher registered via $watch().
@@ -7975,14 +7981,14 @@
 	  }
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
-	var Transition = __webpack_require__(65)
+	var _ = __webpack_require__(21)
+	var Transition = __webpack_require__(66)
 	
 	module.exports = {
 	
@@ -8004,11 +8010,11 @@
 
 
 /***/ },
-/* 65 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
-	var queue = __webpack_require__(66)
+	var _ = __webpack_require__(21)
+	var queue = __webpack_require__(67)
 	var addClass = _.addClass
 	var removeClass = _.removeClass
 	var transitionEndEvent = _.transitionEndEvent
@@ -8377,10 +8383,10 @@
 
 
 /***/ },
-/* 66 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
+	var _ = __webpack_require__(21)
 	var queue = []
 	var queued = false
 	
@@ -8418,17 +8424,17 @@
 
 
 /***/ },
-/* 67 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
-	var dirParser = __webpack_require__(27)
-	var propDef = __webpack_require__(58)
-	var propBindingModes = __webpack_require__(24)._propBindingModes
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
+	var dirParser = __webpack_require__(28)
+	var propDef = __webpack_require__(59)
+	var propBindingModes = __webpack_require__(25)._propBindingModes
 	var empty = {}
 	
 	// regexes
-	var identRE = __webpack_require__(62).identRE
+	var identRE = __webpack_require__(63).identRE
 	var settablePathRE = /^[A-Za-z_$][\w$]*(\.[A-Za-z_$][\w$]*|\[[^\[\]]+\])*$/
 	
 	/**
@@ -8629,14 +8635,14 @@
 	    : def
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 68 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
-	var templateParser = __webpack_require__(38)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
+	var templateParser = __webpack_require__(39)
 	var specialCharRE = /[^\w\-:\.]/
 	
 	/**
@@ -8784,22 +8790,22 @@
 	  }
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
-
-/***/ },
-/* 69 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports.slot = __webpack_require__(70)
-	exports.partial = __webpack_require__(71)
-
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
 /* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
-	var templateParser = __webpack_require__(38)
+	exports.slot = __webpack_require__(71)
+	exports.partial = __webpack_require__(72)
+
+
+/***/ },
+/* 71 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var _ = __webpack_require__(21)
+	var templateParser = __webpack_require__(39)
 	
 	// This is the elementDirective that handles <content>
 	// transclusions. It relies on the raw content of an
@@ -8925,12 +8931,12 @@
 
 
 /***/ },
-/* 71 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
-	var vIf = __webpack_require__(42)
-	var FragmentFactory = __webpack_require__(40)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
+	var vIf = __webpack_require__(43)
+	var FragmentFactory = __webpack_require__(41)
 	
 	module.exports = {
 	
@@ -8972,13 +8978,13 @@
 	  }
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 72 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
+	var _ = __webpack_require__(21)
 	
 	/**
 	 * Stringify value.
@@ -9095,16 +9101,16 @@
 	 * Install special array filters
 	 */
 	
-	_.extend(exports, __webpack_require__(73))
+	_.extend(exports, __webpack_require__(74))
 
 
 /***/ },
-/* 73 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
-	var Path = __webpack_require__(62)
-	var toArray = __webpack_require__(39)._postProcess
+	var _ = __webpack_require__(21)
+	var Path = __webpack_require__(63)
+	var toArray = __webpack_require__(40)._postProcess
 	
 	/**
 	 * Limit filter for arrays
@@ -9223,10 +9229,10 @@
 
 
 /***/ },
-/* 74 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var mergeOptions = __webpack_require__(20).mergeOptions
+	var mergeOptions = __webpack_require__(21).mergeOptions
 	var uid = 0
 	
 	/**
@@ -9341,10 +9347,10 @@
 
 
 /***/ },
-/* 75 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
 	var inDoc = _.inDoc
 	var eventRE = /^v-on:|^@/
 	
@@ -9508,17 +9514,17 @@
 	  this.$emit('hook:' + hook)
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 76 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
-	var compiler = __webpack_require__(33)
-	var Observer = __webpack_require__(77)
-	var Dep = __webpack_require__(60)
-	var Watcher = __webpack_require__(59)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
+	var compiler = __webpack_require__(34)
+	var Observer = __webpack_require__(78)
+	var Dep = __webpack_require__(61)
+	var Watcher = __webpack_require__(60)
 	
 	/**
 	 * Setup the scope of an instance, which contains:
@@ -9756,16 +9762,16 @@
 	  }
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 77 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
-	var config = __webpack_require__(24)
-	var Dep = __webpack_require__(60)
-	var arrayMethods = __webpack_require__(78)
+	var _ = __webpack_require__(21)
+	var config = __webpack_require__(25)
+	var Dep = __webpack_require__(61)
+	var arrayMethods = __webpack_require__(79)
 	var arrayKeys = Object.getOwnPropertyNames(arrayMethods)
 	
 	/**
@@ -9992,10 +9998,10 @@
 
 
 /***/ },
-/* 78 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
+	var _ = __webpack_require__(21)
 	var arrayProto = Array.prototype
 	var arrayMethods = Object.create(arrayProto)
 	
@@ -10088,12 +10094,12 @@
 
 
 /***/ },
-/* 79 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
-	var Directive = __webpack_require__(80)
-	var compiler = __webpack_require__(33)
+	var _ = __webpack_require__(21)
+	var Directive = __webpack_require__(81)
+	var compiler = __webpack_require__(34)
 	
 	/**
 	 * Update v-ref for component.
@@ -10331,12 +10337,12 @@
 
 
 /***/ },
-/* 80 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
-	var Watcher = __webpack_require__(59)
-	var expParser = __webpack_require__(61)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
+	var Watcher = __webpack_require__(60)
+	var expParser = __webpack_require__(62)
 	function noop () {}
 	
 	/**
@@ -10657,13 +10663,13 @@
 	
 	module.exports = Directive
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 81 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
 	
 	/**
 	 * Apply a list of filter (descriptors) to a value.
@@ -10757,18 +10763,18 @@
 	  }
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 82 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
-	var Watcher = __webpack_require__(59)
-	var Path = __webpack_require__(62)
-	var textParser = __webpack_require__(25)
-	var dirParser = __webpack_require__(27)
-	var expParser = __webpack_require__(61)
+	var _ = __webpack_require__(21)
+	var Watcher = __webpack_require__(60)
+	var Path = __webpack_require__(63)
+	var textParser = __webpack_require__(26)
+	var dirParser = __webpack_require__(28)
+	var expParser = __webpack_require__(62)
 	var filterRE = /[^|]\|[^|]/
 	
 	/**
@@ -10940,11 +10946,11 @@
 
 
 /***/ },
-/* 83 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
-	var transition = __webpack_require__(28)
+	var _ = __webpack_require__(21)
+	var transition = __webpack_require__(29)
 	
 	/**
 	 * Convenience on-instance nextTick. The callback is
@@ -11150,10 +11156,10 @@
 
 
 /***/ },
-/* 84 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(20)
+	var _ = __webpack_require__(21)
 	
 	/**
 	 * Listen on the given `event` with `fn`.
@@ -11325,11 +11331,11 @@
 
 
 /***/ },
-/* 85 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(20)
-	var compiler = __webpack_require__(33)
+	/* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(21)
+	var compiler = __webpack_require__(34)
 	
 	/**
 	 * Set instance target element and kick off the compilation
@@ -11397,10 +11403,10 @@
 	  )
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
-/* 86 */
+/* 87 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -13928,7 +13934,7 @@
 	module.exports = Router;
 
 /***/ },
-/* 87 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -13937,11 +13943,11 @@
 	
 	function install(Vue) {
 	
-	    var _ = __webpack_require__(88)(Vue);
+	    var _ = __webpack_require__(89)(Vue);
 	
-	    Vue.url = __webpack_require__(89)(_);
-	    Vue.http = __webpack_require__(90)(_);
-	    Vue.resource = __webpack_require__(94)(_);
+	    Vue.url = __webpack_require__(90)(_);
+	    Vue.http = __webpack_require__(91)(_);
+	    Vue.resource = __webpack_require__(95)(_);
 	
 	    Object.defineProperties(Vue.prototype, {
 	
@@ -13973,7 +13979,7 @@
 	module.exports = install;
 
 /***/ },
-/* 88 */
+/* 89 */
 /***/ function(module, exports) {
 
 	/**
@@ -14059,7 +14065,7 @@
 
 
 /***/ },
-/* 89 */
+/* 90 */
 /***/ function(module, exports) {
 
 	/**
@@ -14222,16 +14228,16 @@
 
 
 /***/ },
-/* 90 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for sending network requests.
 	 */
 	
-	var xhr = __webpack_require__(91);
-	var jsonp = __webpack_require__(93);
-	var Promise = __webpack_require__(92);
+	var xhr = __webpack_require__(92);
+	var jsonp = __webpack_require__(94);
+	var Promise = __webpack_require__(93);
 	
 	module.exports = function (_) {
 	
@@ -14388,14 +14394,14 @@
 
 
 /***/ },
-/* 91 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XMLHttp request.
 	 */
 	
-	var Promise = __webpack_require__(92);
+	var Promise = __webpack_require__(93);
 	var XDomain = window.XDomainRequest;
 	
 	module.exports = function (_, options) {
@@ -14445,7 +14451,7 @@
 
 
 /***/ },
-/* 92 */
+/* 93 */
 /***/ function(module, exports) {
 
 	/**
@@ -14661,14 +14667,14 @@
 
 
 /***/ },
-/* 93 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP request.
 	 */
 	
-	var Promise = __webpack_require__(92);
+	var Promise = __webpack_require__(93);
 	
 	module.exports = function (_, options) {
 	
@@ -14717,7 +14723,7 @@
 
 
 /***/ },
-/* 94 */
+/* 95 */
 /***/ function(module, exports) {
 
 	/**
@@ -14834,15 +14840,15 @@
 
 
 /***/ },
-/* 95 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Created by top on 15-11-9.
 	 */
-	var Store = __webpack_require__(14);
-	var routes = __webpack_require__(96);
-	var _ = __webpack_require__(104);
+	var Store = __webpack_require__(15);
+	var routes = __webpack_require__(97);
+	var _ = __webpack_require__(105);
 	var ajax = _.ajax;
 	
 	// user object
@@ -14966,7 +14972,7 @@
 	};
 
 /***/ },
-/* 96 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -14983,11 +14989,11 @@
 	// please add your routes file here:
 	//------------------------------
 	
-	routeFiles.push(__webpack_require__(97));
-	
 	routeFiles.push(__webpack_require__(98));
 	
-	routeFiles.push(__webpack_require__(113));
+	routeFiles.push(__webpack_require__(99));
+	
+	routeFiles.push(__webpack_require__(117));
 	//------------------------------
 	
 	// parse routes file, and add route info to routes array
@@ -15005,7 +15011,7 @@
 
 
 /***/ },
-/* 97 */
+/* 98 */
 /***/ function(module, exports) {
 
 	/**
@@ -15017,7 +15023,7 @@
 	};
 
 /***/ },
-/* 98 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -15026,13 +15032,16 @@
 	
 	module.exports = {
 	    '/center' : {
-	        component : __webpack_require__(99),
+	        component : __webpack_require__(100),
 	        subRoutes : {
 	            '/play' : {
-	                component : __webpack_require__(107)
+	                component : __webpack_require__(108)
 	            },
 	            '/courses' : {
-	                component : __webpack_require__(110)
+	                component : __webpack_require__(111)
+	            },
+	            '/class-courses' : {
+	                component: __webpack_require__(114)
 	            }
 	        }
 	    }
@@ -15040,13 +15049,13 @@
 
 
 /***/ },
-/* 99 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(100)
+	module.exports = __webpack_require__(101)
 	
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(106)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(107)
 	if (false) {
 	(function () {
 	var hotAPI = require("vue-hot-reload-api")
@@ -15064,25 +15073,29 @@
 	}
 
 /***/ },
-/* 100 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var footerBarComponent = __webpack_require__(101);
-	var _ = __webpack_require__(104);
+	var footerBarComponent = __webpack_require__(102);
+	var _ = __webpack_require__(105);
+	
 	module.exports = {
 	    data: function data() {
-	        return {
-	            activeFooterBar: ''
-	        };
+	        return {};
 	    },
-	    watch: {
-	        'activeFooterBar': function activeFooterBar(val, oldVal) {
+	    events: {
+	        'updateActiveFooterBar': function updateActiveFooterBar(barName) {
+	            this.$broadcast('active', barName);
+	            return false;
+	        },
+	        'refreshScroll': function refreshScroll() {
 	            _.refreshScroll({
-	                alias: 'person-center'
+	                alias: 'person-center',
+	                top: 0
 	            });
-	            this.$broadcast('active', val);
+	            return false;
 	        }
 	    },
 	    components: {
@@ -15091,13 +15104,13 @@
 	};
 
 /***/ },
-/* 101 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(102)
+	module.exports = __webpack_require__(103)
 	
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(103)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(104)
 	if (false) {
 	(function () {
 	var hotAPI = require("vue-hot-reload-api")
@@ -15115,7 +15128,7 @@
 	}
 
 /***/ },
-/* 102 */
+/* 103 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15142,26 +15155,10 @@
 	};
 
 /***/ },
-/* 103 */
+/* 104 */
 /***/ function(module, exports) {
 
 	module.exports = "<div id=\"footer\" class=\"footer-bar\">\n        <ul>\n            <li class=\"course {{isActive('course')}}\">\n                <a v-link=\"{path: '/center/courses'}\">课程</a>\n            </li>\n            <li class=\"exam {{isActive('exam')}}\">\n                <a v-link=\"{path: '/center/exams'}\">考试</a>\n            </li>\n            <li class=\"play {{isActive('play')}}\">\n                <a v-link=\"{path: '/center/play'}\">播放</a>\n            </li>\n            <li class=\"cert {{isActive('cert')}}\">\n                <a v-link=\"{path: '/center/cert'}\">证书</a>\n            </li>\n            <li class=\"me {{isActive('me')}}\">\n                <a v-link=\"{path: '/center/me'}\">我</a>\n            </li>\n        </ul>\n    </div>";
-
-/***/ },
-/* 104 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Created by top on 15-11-12.
-	 */
-	
-	var helper = __webpack_require__(13);
-	var extend = helper.extend;
-	
-	extend(module.exports, helper);
-	extend(module.exports, __webpack_require__(105));
-	
-
 
 /***/ },
 /* 105 */
@@ -15170,8 +15167,24 @@
 	/**
 	 * Created by top on 15-11-12.
 	 */
-	var _ = __webpack_require__(104);
-	var Store = __webpack_require__(14);
+	
+	var helper = __webpack_require__(14);
+	var extend = helper.extend;
+	
+	extend(module.exports, helper);
+	extend(module.exports, __webpack_require__(106));
+	
+
+
+/***/ },
+/* 106 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by top on 15-11-12.
+	 */
+	var _ = __webpack_require__(105);
+	var Store = __webpack_require__(15);
 	var base = '/v1';
 	
 	var ajax = {
@@ -15212,19 +15225,19 @@
 
 
 /***/ },
-/* 106 */
+/* 107 */
 /***/ function(module, exports) {
 
 	module.exports = "<div id=\"scroll-wrapper\">\n        <div id=\"scroller\">\n        <router-view></router-view>\n        </div>\n    </div>\n    <footer-bar></footer-bar>";
 
 /***/ },
-/* 107 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(108)
+	module.exports = __webpack_require__(109)
 	
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(109)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(110)
 	if (false) {
 	(function () {
 	var hotAPI = require("vue-hot-reload-api")
@@ -15242,7 +15255,7 @@
 	}
 
 /***/ },
-/* 108 */
+/* 109 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15250,24 +15263,25 @@
 	var footerBarName = 'play';
 	module.exports = {
 	    ready: function ready() {
-	        this.$parent.$data.activeFooterBar = footerBarName;
+	        this.$dispatch('updateActiveFooterBar', footerBarName);
+	        this.$dispatch('refreshScroll');
 	    }
 	};
 
 /***/ },
-/* 109 */
+/* 110 */
 /***/ function(module, exports) {
 
 	module.exports = "<!--<h2>Play!</h2>-->\n    <video id=\"videoJs\" class=\"video-js vjs-default-skin vjs-big-play-centered\" controls preload=\"none\" width=\"100%\" height=\"270\"\n        data-setup=\"{}\">\n        您的浏览器不支持 video 标签。\n    </video>\n    <ul class=\"horizontal-nav horizontal-nav-3\">\n        <li class=\"active\">课程介绍</li>\n        <li>相关课件</li>\n        <li>课后测验</li>\n    </ul>\n    <div class=\"course-info-box\">\n        <div class=\"description\">\n            <p>\n                <span class=\"desc-title\">行业：</span>\n                <span class=\"desc-content\">建筑施工</span>\n            </p>\n            <p>\n                <span class=\"desc-title\">时长：</span>\n                <span class=\"desc-content\">2课时&nbsp;&nbsp;共7分23秒</span>\n            </p>\n            <p>\n                <span class=\"desc-title\">简介：</span>\n                <span class=\"desc-content\">\n                    实例模板。模板默认替换挂载元素。如果 replace 选项为 false，模板将插入挂载元素内。两种情况下，挂载元素的内容都将被忽略，除非模板有内容分发 slot。\n                    如果值以 # 开始，则它用作选项符，将使用匹配元素的 innerHTML 作为模板。常用的技巧是用包含模板。\n                </span>\n            </p>\n        </div>\n    </div>\n    <div class=\"row mb-5\">\n        <span class=\"font-size-16\">剩余课程</span>\n    </div>\n    <div class=\"row course-row\">\n        <div class=\"left\">\n           <img src=\"http://7xkg31.com2.z0.glb.qiniucdn.com/201506/b/a/3/b84bef7c21bed7aa282cba181f31c953.png\">\n        </div>\n        <div class=\"right\">\n            <p>《安全生产法》之安全生产十大定律</p>\n            <p><span class=\"label label-default\">公共安全</span></p>\n            <p>2课时&nbsp;&nbsp;共7分23秒</p>\n            <p>到期时间：&nbsp;2015年12月15日</p>\n        </div>\n    </div>";
 
 /***/ },
-/* 110 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(111)
+	module.exports = __webpack_require__(112)
 	
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(112)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(113)
 	if (false) {
 	(function () {
 	var hotAPI = require("vue-hot-reload-api")
@@ -15285,7 +15299,7 @@
 	}
 
 /***/ },
-/* 111 */
+/* 112 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15299,27 +15313,16 @@
 	        };
 	    },
 	    ready: function ready() {
-	        this.$parent.$data.activeFooterBar = footerBarName;
+	        this.$dispatch('updateActiveFooterBar', footerBarName);
+	        this.$dispatch('refreshScroll');
 	    }
 	};
-
-/***/ },
-/* 112 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"row class-list\" v-for=\"item in list\">\n        <p class=\"item-header\">\n            安全培训一班\n        </p>\n        <div class=\"item-info\">\n            <p>\n                <span class=\"title\">班级详情：</span>\n                <span>2课时</span>\n                <span>共7分23秒</span>\n                <span>1人学习</span>\n                <span>1人考试</span>\n            </p>\n            <p>\n                <span class=\"title\">到期时间：</span>\n                <span>2015年12月15日</span>\n            </p>\n            <div class=\"mb-10\">\n                <span class=\"title\">我的进度：</span>\n                <div class=\"aq-progress-wrapper\">\n                    <div class=\"aq-progress\"></div>\n                </div>\n            </div>\n        </div>\n        <div class=\"item-course\">\n            <p class=\"item-course-header\">\n                课程\n                <a v-link=\"{path:'/center/class-courses'}\" class=\"more-tag\">更多></a>\n            </p>\n            <div class=\"info\">\n                <div class=\"info-left\">\n                    <img src=\"http://7xkg31.com2.z0.glb.qiniucdn.com/201506/b/a/3/b84bef7c21bed7aa282cba181f31c953.png\">\n                </div>\n                <div class=\"info-right\">\n                    <p>《安全生产法》之安全生产十大定律</p>\n                    <p>\n                        共7分23秒\n                        <span class=\"label label-default pull-right\">已学完</span>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </div>";
 
 /***/ },
 /* 113 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	
-	module.exports = {
-	    '/login': {
-	        auth: false,
-	        component: __webpack_require__(114)
-	    }
-	};
+	module.exports = "<div class=\"row class-list\" v-for=\"item in list\">\n        <p class=\"item-header\">\n            安全培训一班\n        </p>\n        <div class=\"item-info\">\n            <p>\n                <span class=\"title\">班级详情：</span>\n                <span>2课时</span>\n                <span>共7分23秒</span>\n                <span>1人学习</span>\n                <span>1人考试</span>\n            </p>\n            <p>\n                <span class=\"title\">到期时间：</span>\n                <span>2015年12月15日</span>\n            </p>\n            <div class=\"mb-10\">\n                <span class=\"title\">我的进度：</span>\n                <div class=\"aq-progress-wrapper\">\n                    <div class=\"aq-progress\"></div>\n                </div>\n            </div>\n        </div>\n        <div class=\"item-course\">\n            <p class=\"item-course-header\">\n                课程\n                <button v-link=\"{path:'/center/class-courses'}\" class=\"more-tag\" >更多></button>\n            </p>\n            <div class=\"info\">\n                <div class=\"info-left\">\n                    <img src=\"http://7xkg31.com2.z0.glb.qiniucdn.com/201506/b/a/3/b84bef7c21bed7aa282cba181f31c953.png\">\n                </div>\n                <div class=\"info-right\">\n                    <p>《安全生产法》之安全生产十大定律</p>\n                    <p>\n                        共7分23秒\n                        <span class=\"label label-default pull-right\">已学完</span>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </div>";
 
 /***/ },
 /* 114 */
@@ -15329,6 +15332,67 @@
 	
 	if (module.exports.__esModule) module.exports = module.exports.default
 	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(116)
+	if (false) {
+	(function () {
+	var hotAPI = require("vue-hot-reload-api")
+	hotAPI.install(require("vue"))
+	if (!hotAPI.compatible) return
+	var id = "-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./class_courses.vue"
+	hotAPI.createRecord(id, module.exports)
+	module.hot.accept(["-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./class_courses.vue","-!vue-html!./../../../../../node_modules/vue-loader/lib/selector.js?type=template&index=0!./class_courses.vue"], function () {
+	var newOptions = require("-!babel?presets[]=es2015&plugins[]=transform-runtime!./../../../../../node_modules/vue-loader/lib/selector.js?type=script&index=0!./class_courses.vue")
+	if (newOptions && newOptions.__esModule) newOptions = newOptions.default
+	var newTemplate = require("-!vue-html!./../../../../../node_modules/vue-loader/lib/selector.js?type=template&index=0!./class_courses.vue")
+	hotAPI.update(id, newOptions, newTemplate)
+	})
+	})()
+	}
+
+/***/ },
+/* 115 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	var footerBarName = 'course';
+	module.exports = {
+	    data: function data() {
+	        return {
+	            list: [1, 2, 3, 4, 5, 6, 7]
+	        };
+	    },
+	    ready: function ready() {
+	        this.$dispatch('updateActiveFooterBar', footerBarName);
+	        this.$dispatch('refreshScroll');
+	    }
+	};
+
+/***/ },
+/* 116 */
+/***/ function(module, exports) {
+
+	module.exports = "<div v-for=\"item in list\" class=\"row course-row big\">\n        <div class=\"left\">\n           <img src=\"http://7xkg31.com2.z0.glb.qiniucdn.com/201506/b/a/3/b84bef7c21bed7aa282cba181f31c953.png\">\n        </div>\n        <div class=\"right\">\n            <p>《安全生产法》之安全生产十大定律</p>\n            <p><span class=\"label label-default\">公共安全</span></p>\n            <p>2课时&nbsp;&nbsp;共7分23秒</p>\n            <p>到期时间：&nbsp;2015年12月15日</p>\n        </div>\n    </div>";
+
+/***/ },
+/* 117 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	module.exports = {
+	    '/login': {
+	        auth: false,
+	        component: __webpack_require__(118)
+	    }
+	};
+
+/***/ },
+/* 118 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(119)
+	
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(120)
 	if (false) {
 	(function () {
 	var hotAPI = require("vue-hot-reload-api")
@@ -15346,12 +15410,12 @@
 	}
 
 /***/ },
-/* 115 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _ = __webpack_require__(104);
+	var _ = __webpack_require__(105);
 	
 	module.exports = {
 	    data: function data() {
@@ -15383,7 +15447,7 @@
 	};
 
 /***/ },
-/* 116 */
+/* 120 */
 /***/ function(module, exports) {
 
 	module.exports = "<div id=\"scroll-wrapper\" class=\"full\">\n        <div id=\"scroller\">\n            <div class=\"logo-wrapper\">\n                <img v-bind:src=\"logoSrc\">\n            </div>\n            <div class=\"cell\">\n                <input type=\"text\" class=\"row-input\" placeholder=\"输入用户名\" v-model=\"username\">\n            </div>\n            <div class=\"cell\">\n                <input type=\"password\" class=\"row-input\" placeholder=\"输入密码\" v-model=\"password\">\n            </div>\n            <div class=\"cell mt-30\">\n                <button v-on:click=\"login\"\n                 class=\"aq-btn aq-btn-default aq-btn-bg block-btn\">登陆</button>\n            </div>\n            <div class=\"cell cell-center\">\n                <div class=\"contact-wrapper\">\n                    <img v-bind:src=\"phoneSrc\">\n                    咨询热线：028 - 83359259\n                </div>\n            </div>\n        </div>\n    </div>";
