@@ -15080,7 +15080,7 @@
 	    watch: {
 	        'activeFooterBar': function activeFooterBar(val, oldVal) {
 	            _.refreshScroll({
-	                alias: 'login'
+	                alias: 'person-center'
 	            });
 	            this.$broadcast('active', val);
 	        }
@@ -15291,10 +15291,11 @@
 	'use strict';
 	
 	var footerBarName = 'course';
+	
 	module.exports = {
 	    data: function data() {
 	        return {
-	            list: [1, 2, 3, 4, 5, 6, 7]
+	            list: [1, 2, 3, 4, 5, 6]
 	        };
 	    },
 	    ready: function ready() {
@@ -15306,7 +15307,7 @@
 /* 112 */
 /***/ function(module, exports) {
 
-	module.exports = "<div v-for=\"item in list\" class=\"row course-row big\">\n        <div class=\"left\">\n           <img src=\"http://7xkg31.com2.z0.glb.qiniucdn.com/201506/b/a/3/b84bef7c21bed7aa282cba181f31c953.png\">\n        </div>\n        <div class=\"right\">\n            <p>《安全生产法》之安全生产十大定律</p>\n            <p><span class=\"label label-default\">公共安全</span></p>\n            <p>2课时&nbsp;&nbsp;共7分23秒</p>\n            <p>到期时间：&nbsp;2015年12月15日</p>\n        </div>\n    </div>";
+	module.exports = "<div class=\"row class-list\" v-for=\"item in list\">\n        <p class=\"item-header\">\n            安全培训一班\n        </p>\n        <div class=\"item-info\">\n            <p>\n                <span class=\"title\">班级详情：</span>\n                <span>2课时</span>\n                <span>共7分23秒</span>\n                <span>1人学习</span>\n                <span>1人考试</span>\n            </p>\n            <p>\n                <span class=\"title\">到期时间：</span>\n                <span>2015年12月15日</span>\n            </p>\n            <div class=\"mb-10\">\n                <span class=\"title\">我的进度：</span>\n                <div class=\"aq-progress-wrapper\">\n                    <div class=\"aq-progress\"></div>\n                </div>\n            </div>\n        </div>\n        <div class=\"item-course\">\n            <p class=\"item-course-header\">\n                课程\n                <a v-link=\"{path:'/center/class-courses'}\" class=\"more-tag\">更多></a>\n            </p>\n            <div class=\"info\">\n                <div class=\"info-left\">\n                    <img src=\"http://7xkg31.com2.z0.glb.qiniucdn.com/201506/b/a/3/b84bef7c21bed7aa282cba181f31c953.png\">\n                </div>\n                <div class=\"info-right\">\n                    <p>《安全生产法》之安全生产十大定律</p>\n                    <p>\n                        共7分23秒\n                        <span class=\"label label-default pull-right\">已学完</span>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </div>";
 
 /***/ },
 /* 113 */
@@ -15363,7 +15364,7 @@
 	    },
 	    ready: function ready() {
 	        _.refreshScroll({
-	            alias: 'center'
+	            alias: 'login'
 	        });
 	    },
 	    methods: {
